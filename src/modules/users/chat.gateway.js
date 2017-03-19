@@ -1,9 +1,9 @@
-import { SocketGateway, SubscribeMessage, GatewayServer } from 'nest.js/socket';
+import { WebSocketGateway, SubscribeMessage, WebSocketServer } from 'nest.js/websockets';
 import { Subject } from 'rxjs/Subject';
 
-@SocketGateway({ port: 2000 })
+@WebSocketGateway({ port: 2000 })
 export class ChatGateway {
-    @GatewayServer server;
+    @WebSocketServer() server;
 
     constructor() {
         this.msg$ = new Subject();

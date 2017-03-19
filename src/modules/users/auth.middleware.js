@@ -1,15 +1,12 @@
-import { HttpException, Middleware } from 'nest.js';
+import { HttpException, Middleware, Inject } from 'nest.js';
 import { UsersService } from "./users.service";
 
 @Middleware()
+@Inject([ UsersService ])
 export class AuthMiddleware {
 
     constructor(usersService) {
         this.usersService = usersService
-    }
-
-    static get dependencies() {
-        return [ UsersService ];
     }
 
     resolve() {

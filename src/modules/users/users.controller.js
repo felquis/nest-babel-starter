@@ -1,15 +1,12 @@
-import { RequestMethod, Controller, RequestMapping } from "nest.js";
+import { RequestMethod, Controller, RequestMapping, Inject } from "nest.js";
 import { UsersService } from "./users.service";
 
 @Controller({ path: 'users' })
+@Inject([ UsersService ])
 export class UsersController {
 
     constructor(usersService) {
         this.usersService = usersService;
-    }
-
-    static get dependencies() {
-        return [ UsersService ];
     }
 
     @RequestMapping()

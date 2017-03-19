@@ -1,7 +1,8 @@
-import { Component } from 'nest.js';
+import { Component, Inject } from 'nest.js';
 import { ChatGateway } from './chat.gateway';
 
 @Component()
+@Inject([ ChatGateway ])
 export class ChatService {
 
     constructor(chatGateway) {
@@ -9,10 +10,6 @@ export class ChatService {
         
         const stream$ = this.chatGateway.msgStream;
         stream$.subscribe(this.storeMessage.bind(this));
-    }
-
-    static get dependencies() {
-        return [ ChatGateway ];
     }
 
     storeMessage(data) {}
